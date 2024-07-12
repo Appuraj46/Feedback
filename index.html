@@ -912,7 +912,7 @@
         
         //for submit button condition final
         function redirect() {
-            if (subcount > 2) {
+            if (subcount < 2) {
                 alert('Minimum two forms should be submitted!!!');
             } else {
                 document.getElementById("register").addEventListener("click", function() {
