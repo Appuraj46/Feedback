@@ -3,133 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <title>Student Feedback Form</title>
     <style>
-        /*body {
-            font-family: Arial, sans-serif;
-            margin: 10px;
-            padding: 10px;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .form-group input[type="submit"] {
-            width: auto;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 3em;
-        }
-
-        .form-group input[type="submit"]:hover {
-            background-color: #4cae4c;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .radio-group {
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .radio-group label {
-            margin-right: 20px;
-        }
-
-        .center-text {
-            text-align: center;
-            color: #333;
-        }
-
-        .question {
-            margin-bottom: 20px;
-        }
-
-        .question-text {
-            margin-bottom: 8px;
-        }
-
-        .options {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-
-        .option-radio {
-            margin-left: auto;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-                margin: 20px auto;
-                padding: 10px;
-            }
-            .radio-group {
-                flex-direction: column;
-            }
-            .radio-group label {
-                margin-right: 0;
-                margin-bottom: 50px;
-            }
-            .form-group select,
-            .form-group textarea {
-                width: calc(100% - 20px);
-            }
-        }
-
-        #register {
-            padding: 10px;
-            width: auto;
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 3em;
-        }*/
-
         body {
             font-family: Arial, sans-serif;
             margin: 10px;
             padding: 10px;
             background-color: #f4f4f4;
         }
+
         .container {
             max-width: 800px;
             margin: 50px auto;
@@ -138,18 +21,22 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
+
         h1 {
             text-align: center;
             color: #333;
         }
+
         .form-group {
             margin-bottom: 15px;
         }
+
         .form-group label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
         }
+
         .form-group input,
         .form-group select,
         .form-group textarea {
@@ -158,6 +45,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+
         .form-group input[type="submit"] {
             width: auto;
             background-color: #5cb85c;
@@ -166,66 +54,92 @@
             cursor: pointer;
             border-radius: 3em;
         }
+
         .form-group input[type="submit"]:hover {
             background-color: #4cae4c;
         }
+
         .hidden {
             display: none;
         }
+
         .radio-group {
             display: flex;
             flex-wrap: wrap;
         }
+
         .radio-group label {
             margin-right: 20px;
         }
+
         .center-text {
             text-align: center;
             color: #333;
         }
+
         .question {
             margin-bottom: 20px;
         }
+
         .question-text {
             margin-bottom: 8px;
         }
+
         .options {
             display: flex;
             flex-direction: column;
             margin-left: 35px;
             margin-right: 100px;
         }
+
         .option {
             display: flex;
-            align-items: left;
+            justify-content: flex-start; 
+            align-items: center;
             margin-bottom: 5px;
         }
+
         .option-label {
-            margin-left: 10px;
+            flex-grow: auto;
+            margin-right: auto;
         }
+
         .option-radio {
+            float: left;
             margin-right: 20px;
         }
+
         @media (max-width: 768px) {
             .container {
                 width: 95%;
                 margin: 20px auto;
                 padding: 10px;
             }
+
             .radio-group {
                 flex-direction: column;
                 display: flex;
                 align-items: flex-end;
             }
+
             .radio-group label {
                 margin-right: 0;
                 margin-bottom: 10px;
             }
+
             .form-group select,
             .form-group textarea {
                 width: calc(100% - 20px); 
             }
         }
+
+        input[type='radio'] {
+            width: 20px;
+            margin-top: auto;
+            height: 17px;
+            float: left;
+        }
+
         #register {
             padding: 10px;
             width: auto;
@@ -236,6 +150,12 @@
             border-radius: 3em;
         }
 
+        #cook {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            text-align:center;
+            opacity: 50%;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -281,7 +201,7 @@
             <!--for lec-->
             <div class="form-group hidden" id="lecture-group">
                 <label for="lecture">Lecturer Name:</label>
-                <select id="lecture" name="lecture" required onchange="showSubject()">
+                <select id="lecture" name="lecture" onchange="showSubject()">
                     <option value="">Select Lecturer Name</option>
                 </select>
             </div>
@@ -304,16 +224,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Dignified</span>
                                 <input type="radio" id="q1A" name="q1" value="Dignified" required class="option-radio">
+                                <span class="option-label">Dignified</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Smiling</span>
                                 <input type="radio" id="q1B" name="q1" value="Smiling" required class="option-radio">
+                                <span class="option-label">Smiling</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Fearsome</span>
                                 <input type="radio" id="q1C" name="q1" value="Fearsome" required class="option-radio">
+                                <span class="option-label">Fearsome</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -321,16 +241,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">On time</span>
                                 <input type="radio" id="q2A" name="q2" value="On time" required class="option-radio">
+                                <span class="option-label">On time</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Late</span>
                                 <input type="radio" id="q2B" name="q2" value="Late" required class="option-radio">
+                                <span class="option-label">Late</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Very late</span>
                                 <input type="radio" id="q2C" name="q2" value="Very late" required class="option-radio">
+                                <span class="option-label">Very late</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -338,12 +258,12 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Very regular</span>
                                 <input type="radio" id="q3A" name="q3" value="Very regular" required class="option-radio">
+                                <span class="option-label">Very regular</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Irregular</span>
                                 <input type="radio" id="q3B" name="q3" value="Irregular" required class="option-radio">
+                                <span class="option-label">Irregular</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -351,20 +271,20 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Very good</span>
                                 <input type="radio" id="q4A" name="q4" value="Very good" required class="option-radio">
+                                <span class="option-label">Very good</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Good</span>
                                 <input type="radio" id="q4B" name="q4" value="Good" required class="option-radio">
+                                <span class="option-label">Good</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Poor</span>
                                 <input type="radio" id="q4C" name="q4" value="Poor" required class="option-radio">
+                                <span class="option-label">Poor</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">No preparation at all</span>
                                 <input type="radio" id="q4D" name="q4" value="No preparation at all" required class="option-radio">
+                                <span class="option-label">No preparation at all</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -372,16 +292,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Always</span>
                                 <input type="radio" id="q5A" name="q5" value="Always" required class="option-radio">
+                                <span class="option-label">Always</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Sometimes</span>
                                 <input type="radio" id="q5B" name="q5" value="Sometimes" required class="option-radio">
+                                <span class="option-label">Sometimes</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Not at all</span>
                                 <input type="radio" id="q5C" name="q5" value="Not at all" required class="option-radio">
+                                <span class="option-label">Not at all</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -389,16 +309,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Excellent</span>
                                 <input type="radio" id="q6A" name="q6" value="Excellent" required class="option-radio">
+                                <span class="option-label">Excellent</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Good</span>
                                 <input type="radio" id="q6B" name="q6" value="Good" required class="option-radio">
+                                <span class="option-label">Good</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Poor</span>
                                 <input type="radio" id="q6C" name="q6" value="Poor" required class="option-radio">
+                                <span class="option-label">Poor</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -406,16 +326,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Excellent</span>
                                 <input type="radio" id="q7A" name="q7" value="Excellent" required class="option-radio">
+                                <span class="option-label">Excellent</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Good</span>
                                 <input type="radio" id="q7B" name="q7" value="Good" required class="option-radio">
+                                <span class="option-label">Good</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Poor</span>
                                 <input type="radio" id="q7C" name="q7" value="Poor" required class="option-radio">
+                                <span class="option-label">Poor</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -423,16 +343,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Very good</span>
                                 <input type="radio" id="q8A" name="q8" value="Very good" required class="option-radio">
+                                <span class="option-label">Very good</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Good</span>
                                 <input type="radio" id="q8B" name="q8" value="Good" required class="option-radio">
+                                <span class="option-label">Good</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Bad</span>
                                 <input type="radio" id="q8C" name="q8" value="Bad" required class="option-radio">
+                                <span class="option-label">Bad</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -440,16 +360,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Relaxed</span>
                                 <input type="radio" id="q9A" name="q9" value="Relaxed" required class="option-radio">
+                                <span class="option-label">Relaxed</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Free</span>
                                 <input type="radio" id="q9B" name="q9" value="Free" required class="option-radio">
+                                <span class="option-label">Free</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Academic</span>
                                 <input type="radio" id="q9C" name="q9" value="Academic" required class="option-radio">
+                                <span class="option-label">Academic</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -457,16 +377,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Very good</span>
                                 <input type="radio" id="q10A" name="q10" value="Very good" required class="option-radio">
+                                <span class="option-label">Very good</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Bad</span>
                                 <input type="radio" id="q10B" name="q10" value="Bad" required class="option-radio">
+                                <span class="option-label">Bad</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">No help at all</span>
                                 <input type="radio" id="q10C" name="q10" value="No help at all" required class="option-radio">
+                                <span class="option-label">No help at all</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -474,16 +394,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Always</span>
                                 <input type="radio" id="q11A" name="q11" value="Always" required class="option-radio">
+                                <span class="option-label">Always</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Sometimes</span>
                                 <input type="radio" id="q11B" name="q11" value="Sometimes" required class="option-radio">
+                                <span class="option-label">Sometimes</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Never</span>
                                 <input type="radio" id="q11C" name="q11" value="Never" required class="option-radio">
+                                <span class="option-label">Never</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -491,12 +411,12 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Partial</span>
                                 <input type="radio" id="q12A" name="q12" value="Partial" required class="option-radio">
+                                <span class="option-label">Partial</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Impartial</span>
                                 <input type="radio" id="q12B" name="q12" value="Impartial" required class="option-radio">
+                                <span class="option-label">Impartial</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -504,16 +424,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Encouraging</span>
                                 <input type="radio" id="q13A" name="q13" value="Encouraging" required class="option-radio">
+                                <span class="option-label">Encouraging</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Bad</span>
                                 <input type="radio" id="q13B" name="q13" value="Bad" required class="option-radio">
+                                <span class="option-label">Bad</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Not interested</span>
                                 <input type="radio" id="q13C" name="q13" value="Not interested" required class="option-radio">
+                                <span class="option-label">Not interested</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -521,16 +441,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Excellent</span>
                                 <input type="radio" id="q14A" name="q14" value="Excellent" required class="option-radio">
+                                <span class="option-label">Excellent</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Good</span>
                                 <input type="radio" id="q14B" name="q14" value="Good" required class="option-radio">
+                                <span class="option-label">Good</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Poor</span>
                                 <input type="radio" id="q14C" name="q14" value="Poor" required class="option-radio">
+                                <span class="option-label">Poor</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -538,16 +458,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Always</span>
                                 <input type="radio" id="q15A" name="q15" value="Always" required class="option-radio">
+                                <span class="option-label">Always</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Sometimes</span>
                                 <input type="radio" id="q15B" name="q15" value="Sometimes" required class="option-radio">
+                                <span class="option-label">Sometimes</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Not at all</span>
                                 <input type="radio" id="q15C" name="q15" value="Not at all" required class="option-radio">
+                                <span class="option-label">Not at all</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -555,12 +475,12 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Always</span>
                                 <input type="radio" id="q16A" name="q16" value="Always" required class="option-radio">
+                                <span class="option-label">Always</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">No</span>
                                 <input type="radio" id="q16B" name="q16" value="No" required class="option-radio">
+                                <span class="option-label">No</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -568,16 +488,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Always</span>
                                 <input type="radio" id="q17A" name="q17" value="Always" required class="option-radio">
+                                <span class="option-label">Always</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Sometimes</span>
                                 <input type="radio" id="q17B" name="q17" value="Sometimes" required class="option-radio">
+                                <span class="option-label">Sometimes</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Not at all</span>
                                 <input type="radio" id="q17C" name="q17" value="Not at all" required class="option-radio">
+                                <span class="option-label">Not at all</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -585,16 +505,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">The Students</span>
                                 <input type="radio" id="q18A" name="q18" value="The Students" required class="option-radio">
+                                <span class="option-label">The Students</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Black board</span>
                                 <input type="radio" id="q18B" name="q18" value="Black board" required class="option-radio">
+                                <span class="option-label">Black board</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Sky</span>
                                 <input type="radio" id="q18C" name="q18" value="Sky" required class="option-radio">
+                                <span class="option-label">Sky</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -602,16 +522,16 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Legible & clear</span>
                                 <input type="radio" id="q19A" name="q19" value="Legible & clear" required class="option-radio">
+                                <span class="option-label">Legible & clear</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Rubbish</span>
                                 <input type="radio" id="q19B" name="q19" value="Rubbish" required class="option-radio">
+                                <span class="option-label">Rubbish</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">No Borad work at all</span>
                                 <input type="radio" id="q19C" name="q19" value="No Borad work at all" required class="option-radio">
+                                <span class="option-label">No Borad work at all</span>
                             </div>
                         </div>
                         <div class="question-text">
@@ -619,20 +539,20 @@
                         </div>
                         <div class="options">
                             <div class="option">
-                                <span class="option-label">Excellent</span>
                                 <input type="radio" id="q20A" name="q20" value="Excellent" required class="option-radio">
+                                <span class="option-label">Excellent</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Very good</span>
                                 <input type="radio" id="q20B" name="q20" value="Very good" required class="option-radio">
+                                <span class="option-label">Very good</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Good</span>
                                 <input type="radio" id="q20C" name="q20" value="Good" required class="option-radio">
+                                <span class="option-label">Good</span>
                             </div>
                             <div class="option">
-                                <span class="option-label">Poor</span>
                                 <input type="radio" id="q20C" name="q20" value="Poor" required class="option-radio">
+                                <span class="option-label">Poor</span>
                             </div>
                         </div>
                         
@@ -655,6 +575,7 @@
             <input type="hidden" id="hidden-dep" name="hidden-dep">
             <input type="hidden" id="hidden-year" name="hidden-year">
             <input type="hidden" id="hidden-section" name="hidden-section">
+            <footer class="form-group hidden" id="cook">We use cookies</footer>
         </form>
     </div>
 
@@ -708,7 +629,7 @@
         let lecturerCounts = {}; //for deleting lec after 2
         let usedSubjects = []; //for deleting sub after 1
         let subcount = 0; //for submit button
-
+        
         //for year dropdown
         function showYear() {
             const dep = document.getElementById("dep").value;
@@ -819,6 +740,7 @@
 
             const feedbackFormGroup = document.getElementById("feedback-form-group");
             feedbackFormGroup.classList.remove("hidden");
+            document.getElementById("cook").classList.remove("hidden");
 
             const lecturerInfo = document.getElementById("lecturer-info");
             lecturerInfo.textContent = `${lecture} - ${subject}`;
@@ -865,7 +787,7 @@
                 }
             }
 
-            console.log('Form Submitted', feedbackData);
+            //console.log('Form Submitted', feedbackData);
             subcount += 1;
 
             const radioButtons = form.querySelectorAll('input[type="radio"]');
@@ -879,10 +801,34 @@
             hideElement('lecture-group');
             hideElement('subject-group');
             hideElement('feedback-form-group');
+            hideElement('cook');
             showLecture();
             //showSubject();
 
-            document.getElementById("submit-btn").disabled = true;
+            const secretKey = CryptoJS.enc.Base64.parse("/N6hvQMv4wVYwEBQ8MOVkW/Mo70vAMCKzyW2Wvk87cM=");
+            function sendFeedbackData() {
+                var data = JSON.stringify(feedbackData);
+                var iv = CryptoJS.lib.WordArray.random(16);
+                var encryptedData = CryptoJS.AES.encrypt(data, secretKey, { iv: iv }).toString();
+                var ivBase64 = CryptoJS.enc.Base64.stringify(iv);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "database.php", true);
+                xhr.setRequestHeader("Content-Type", "application/json");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        console.log("Status: " + xhr.status);
+                        console.log("Response: " + xhr.responseText);
+                    }
+                };
+
+                var payload = JSON.stringify({ data: encryptedData, iv: ivBase64 });
+                console.log("Sending data: " + payload);
+                xhr.send(payload);
+            }
+
+            // Call the function to send data
+            sendFeedbackData();
         }
 
         //to set cookie
@@ -912,7 +858,7 @@
         
         //for submit button condition final
         function redirect() {
-            if (subcount < 2) {
+            if (subcount > 2) {
                 alert('Minimum two forms should be submitted!!!');
             } else {
                 document.getElementById("register").addEventListener("click", function() {
