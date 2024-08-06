@@ -6,44 +6,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <title>Feedback</title>
     <style>
-        body{
-            width: auto;
-            height: auto;
-            font-family: 'Courier New', Courier, monospace;
+        body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 10px;
-            margin: 10px;
-            /*background-image: url("https://m.media-amazon.com/images/I/61FlnWhJIUL._AC_.jpg");*/
-            background-color: rgb(165, 161, 161);
+            height: 100vh;
+            margin: 0;
+            background-color: rgb(185, 179, 179);
+            font-family: 'Courier New', Courier, monospace;
         }
         .hidden {
             display: none;
         }
-        .contain{
-            position: absolute;
-            width: 20em;
-            height: 20em;
-            left: 50%;
-            top: 50%;
-            border: none;
-            border-radius: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            transform: translate(-50%,40%);
-            position: relative;
+        .contain {
             background-color: rgba(248, 245, 245, 0.199);
+            border-radius: 20px;
+            padding: 20px;
+            width: 250px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        h1{
-            color: rgb(0, 0, 0);
-            left: 50%;
-            font-size: auto;
+        @media (max-width: 500px) {
+            .header h1{
+                font-size: 4vw;
+            }
+        }
+        .header h1 {
+            padding: auto;
+            background-color: #a8a4a4;
+            width: auto;
+        }
+        .header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: black;
+            font-size: 2.5vh;
+            margin: 0;
+            vertical-align: middle;
+        }
+        h2 {
+            color: black;
+            font-size: 2.5vh;
             text-decoration-line: underline;
-            text-decoration-style: double;
             text-decoration-thickness: 0.03em;
+        }
+        img {
+            width: 8vh;
+            vertical-align: middle;
+        }
+        .loghead {
+            display: inline-block;
+            text-align: center;
         }
         .stud-but{
             padding: 5% 15%;
@@ -56,7 +76,7 @@
         }
         .hod-but {
             margin-top: 25%;
-            padding: 2.8% 13%;
+            padding: 2.8% 14.5%;
             width: auto;
             border-radius: 8px;
             font-weight: 700;
@@ -65,7 +85,7 @@
             cursor: pointer;
         }
         .lec-but {
-            padding: 2.8% 6%;
+            padding: 2.8% 9%;
             width: auto;
             border-radius: 8px;
             font-weight: 700;
@@ -79,79 +99,108 @@
         }
         .hodChange{
             position: absolute;
-            top: -1.8em;
-            left: 10px;
-            width: auto;
-            padding: 5px 50px;
+            margin-top: 1.6em;
+            margin-left: -14.5em;
+            padding: 0.8em 1.8em;
             color: rgba(0, 0, 0, 0.664);
             border-color: rgba(255, 0, 0, 0.61);
             cursor: default;
         }
         .lecChange{
             position: absolute;
-            top: 50px;
-            left: 10px;
-            width: 40%;
-            padding: 5px 10px;
+            margin-top: 1.5em;
+            margin-left: -13.3em;
+            padding: 0.8em 1em;
             color: rgba(0, 0, 0, 0.664);
             border-color: rgba(0, 225, 255, 0.61);
             cursor: default;
         }
         .back-icon{
             position: absolute;
-            top: 10px;
-            left: 10px;
-            border-radius: 30px;
+            margin-top: -0.5em;
+            margin-left: -16em;
+            border-radius: 0.8em;
             cursor: pointer;
             color: rgb(0, 0, 0);
             background-color: rgb(187, 185, 185);
             border-color: rgb(77, 73, 80);
             border-width: 0.1em;
         }
+        .back-icon:hover {
+            background-color: #a39f9f;
+        }
+        .cse {
+            margin-top: 3.5em;
+        }
         .cse, .ise, .ece, .ae{
-            margin-top: 8px;
-            padding: 10px 20px;
-            width: 7em;
+            margin-bottom: 1em;
+            padding: 6px 0px;
+            width: 5em;
             border-color: black;
             font-weight: 600;
             cursor: pointer;
         }
-        .lec-op {
+        .dep-op :hover {
+            background-color: #bdb9b9;
+            border-color: #757373;
+        }
+        .lecs {
+            margin-top: 80px;
+            margin-bottom: 100px;
+        }
+        .lec-search {
             padding: 0.5em 0.5em;
             border-color: rgb(0, 0, 0);
             border-width: 0.2em;
             border-radius: 1em;
         }
+        .lecList {
+            display: none;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+        .lecList.active {
+            display: block;
+        }
+        .lecList div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .lecList div:hover {
+            background-color: #ddd;
+        }
     </style>
 </head>
 <body>
-    <center>
-    <div class="container">
-        <h1>FEEDBACK FORM</h1>
-        <form>
-            <div class="contain">
-                <button class="stud-but" id="stud-but" type="button" onclick="selectStud()">STUDENT</button><br>
-                <button class="hod-but" id="hod-but" type="button" onclick="selectHod()">HOD</button><br>
-                <button class="lec-but" id="lec-but" type="button" onclick="selectLec()">LECTURES</button>
-                <button class="back-icon hidden" id="icon" type="button" onclick="iconReset()">&#x2190; Back</button>
-                <div class="dep-op hidden" id="dep-op">
-                    <input type="button" class="cse" value="CSE"></br>
-                    <input type="button" class="ise" value="ISE"></br>
-                    <input type="button" class="ece" value="ECE"></br>
-                    <input type="button" class="ae" value="AE">
-                </div>
-                <div class="lecs" id="lecs">
-                    <select  class="lec-op hidden" name="lec-op" id="lec-op">
-                        <option value="">Ur sweet name plz....</option>
-                    </select>
-                </div>
-            </div>
-        </form>
+    <div class="header">    
+        <div class="loghead">
+            <h1><img src="https://github.com/Appuraj46/resub/blob/main/logo.png?raw=true" alt="logo">SHREE DEVI INSTITUTE OF TECHNOLOGY</h1>
+        </div>
+            <h2>FEEDBACK FORM</h2>
     </div>
-    </center>
+    <form>
+        <div class="contain">
+            <button class="stud-but" id="stud-but" type="button" onclick="selectStud()">STUDENT</button><br>
+            <button class="hod-but" id="hod-but" type="button" onclick="selectHod()">HOD</button><br>
+            <button class="lec-but" id="lec-but" type="button" onclick="selectLec()">LECTURES</button>
+            <button class="back-icon hidden" id="icon" type="button" onclick="iconReset()">&#x2190; Back</button>
+            <div class="dep-op hidden" id="dep-op">
+                <input type="button" class="cse" value="CSE"></br>
+                <input type="button" class="ise" value="ISE"></br>
+                <input type="button" class="ece" value="ECE"></br>
+                <input type="button" class="ae" value="AE">
+            </div>
+            <div class="lecs hidden" id="lecs">
+                <input class="lec-search" type="text" id="lec-search" placeholder="Enter ur sweet name......">
+                <div class="lecList hidden" id="lecList"></div>
+            </div>
+        </div>
+    </form>
     <script>
         const lecturesOp = [
-            "lec1","lec2","lec3","lec4","lec5","lec6","lec7","lec8","lec9","lec10",
+            "lec1","lec2","lec3","lec4","lec5","lec rec1","lec6","lec7","lec8","lec9","lec10",
             "lec11","lec12","lec13","lec14","lec15","lec16","lec17","lec18","lec19","lec20"
         ];
 
@@ -182,19 +231,42 @@
             console.log("lecclicked");
             document.getElementById("stud-but").classList.add("hidden");
             document.getElementById("hod-but").classList.add("hidden");
-            document.getElementById("lec-op").classList.remove("hidden");
+            document.getElementById("lecs").classList.remove("hidden");
             const lecBut = document.getElementById("lec-but");
             lecBut.classList.add("lecChange");
             lecBut.disabled = true;
-            const selectLec = document.getElementById("lec-op");
-            lecturesOp.forEach(options=>{
-                const option=document.createElement('option');
-                option.value = options;
-                option.text = options;
-                selectLec.appendChild(option);
-            })
             document.getElementById("icon").classList.remove("hidden");
         }
+
+        const lecSearch = document.getElementById("lec-search");
+        const lecList = document.getElementById("lecList");
+
+        lecSearch.addEventListener("input", () => {
+            const value = lecSearch.value.toLowerCase();
+            lecList.innerHTML = "";
+            if (value) {
+                lecList.classList.add("active");
+                const filteredOptions = lecturesOp.filter(option => option.toLowerCase().includes(value));
+                filteredOptions.forEach(option => {
+                    const optionElement = document.createElement("div");
+                    optionElement.textContent = option;
+                    optionElement.addEventListener("click", () => {
+                        lecSearch.value = option;
+                        lecList.classList.remove("active");
+                    });
+                    lecList.appendChild(optionElement);
+                });
+            } else {
+                lecList.classList.remove("active");
+            }
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!lecList.contains(event.target) && event.target !== lecSearch) {
+                lecList.classList.remove("active");
+            }
+        });
+
         function iconReset(){
             console.log("backclicked");
             document.getElementById("stud-but").classList.remove("hidden");
@@ -204,7 +276,7 @@
             hodButton.classList.remove("hodChange");
             hodButton.disabled = false;
             document.getElementById("hod-but").classList.remove("hidden");
-            document.getElementById("lec-op").classList.add("hidden");
+            document.getElementById("lecs").classList.add("hidden");
             const lecBut = document.getElementById("lec-but");
             lecBut.classList.remove("lecChange");
             lecBut.disabled = false;
