@@ -66,6 +66,7 @@
             text-align: center;
         }
         .stud-but{
+            margin-top: 10%;
             padding: 5% 15%;
             width: auto;
             border-radius: 10px;
@@ -74,9 +75,30 @@
             border-width: 0.12em;
             cursor: pointer;
         }
+        .admin-but {
+            margin-top: 20%;
+            margin-bottom: 4%;
+            padding: 5% 19%;
+            width: auto;
+            border-radius: 8px;
+            font-weight: 700;
+            border-color: red;
+            border-width: 0.1em;
+            cursor: pointer;
+        }
+        .princ-but {
+            margin-top: 5%;
+            padding: 3% 8%;
+            width: auto;
+            border-radius: 8px;
+            font-weight: 700;
+            border-color: red;
+            border-width: 0.1em;
+            cursor: pointer;
+        }
         .hod-but {
-            margin-top: 25%;
-            padding: 2.8% 15%;
+            margin-top: 15%;
+            padding: 2.8% 17%;
             width: auto;
             border-radius: 8px;
             font-weight: 700;
@@ -85,7 +107,9 @@
             cursor: pointer;
         }
         .lec-but {
-            padding: 2.8% 6%;
+            margin-top: 8%;
+            margin-bottom: 8%;
+            padding: 3% 9%;
             width: auto;
             border-radius: 8px;
             font-weight: 700;
@@ -115,7 +139,7 @@
             border-color: rgba(0, 225, 255, 0.61);
             cursor: default;
         }
-        .back-icon{
+        .back-icon, .fback-icon{
             position: absolute;
             margin-top: -0.5em;
             margin-left: -16em;
@@ -126,7 +150,7 @@
             border-color: rgb(77, 73, 80);
             border-width: 0.1em;
         }
-        .back-icon:hover {
+        .back-icon:hover, .fback-icon:hover {
             background-color: #a39f9f;
         }
         .cse {
@@ -183,9 +207,12 @@
     <form>
         <div class="contain">
             <button class="stud-but" id="stud-but" type="button" onclick="selectStud()">STUDENT</button><br>
-            <button class="hod-but" id="hod-but" type="button" onclick="selectHod()">HOD</button><br>
-            <button class="lec-but" id="lec-but" type="button" onclick="selectLec()">LECTURES</button>
-            <button class="back-icon hidden" id="icon" type="button" onclick="iconReset()">&#x2190; Back</button>
+            <button class="admin-but" id="admin-but" type="button" onclick="selectAdmin()">ADMIN</button>
+            <button class="princ-but hidden" id="princ-but" type="button">PRINCIPLE</button>
+            <button class="hod-but hidden" id="hod-but" type="button" onclick="selectHod()">HOD</button><br>
+            <button class="lec-but hidden" id="lec-but" type="button" onclick="selectLec()">LECTURES</button>
+            <button class="fback-icon hidden" id="fback" type="button" onclick="iconReset1()">&#x2190; Back</button>
+            <button class="back-icon hidden" id="icon" type="button" onclick="iconReset2()">&#x2190; Back</button>
             <div class="dep-op hidden" id="dep-op">
                 <input type="button" class="cse" value="CSE"></br>
                 <input type="button" class="ise" value="ISE"></br>
@@ -215,26 +242,41 @@
             
         }
 
+        function selectAdmin(){
+            console.log("adminclicked");
+            document.getElementById("stud-but").classList.add("hidden");
+            document.getElementById("admin-but").classList.add("hidden");
+            document.getElementById("princ-but").classList.remove("hidden");
+            document.getElementById("hod-but").classList.remove("hidden");
+            document.getElementById("lec-but").classList.remove("hidden");
+            document.getElementById("fback").classList.remove("hidden");
+        }
+
+        function selectPrinc(){
+            console.log("princclicked");
+        }
+
         function selectHod(){
             console.log("hodclicked");
-            document.getElementById("stud-but").classList.add("hidden");
             document.getElementById("lec-but").classList.add("hidden");
+            document.getElementById("princ-but").classList.add("hidden");
             document.getElementById("dep-op").classList.remove("hidden");
             const hodButton = document.getElementById("hod-but");
             hodButton.classList.add("hodChange");
             hodButton.disabled = true;
+            document.getElementById("fback").classList.add("hidden");
             document.getElementById("icon").classList.remove("hidden");
-
         }
 
         function selectLec(){
             console.log("lecclicked");
-            document.getElementById("stud-but").classList.add("hidden");
+            document.getElementById("princ-but").classList.add("hidden");
             document.getElementById("hod-but").classList.add("hidden");
             document.getElementById("lecs").classList.remove("hidden");
             const lecBut = document.getElementById("lec-but");
             lecBut.classList.add("lecChange");
             lecBut.disabled = true;
+            document.getElementById("fback").classList.add("hidden");
             document.getElementById("icon").classList.remove("hidden");
         }
 
@@ -267,20 +309,31 @@
             }
         });
 
-        function iconReset(){
-            console.log("backclicked");
-            document.getElementById("stud-but").classList.remove("hidden");
+        function iconReset2(){
+            console.log("2backclicked");
+            document.getElementById("princ-but").classList.remove("hidden");
+            document.getElementById("hod-but").classList.remove("hidden");
             document.getElementById("lec-but").classList.remove("hidden");
             document.getElementById("dep-op").classList.add("hidden");
             const hodButton = document.getElementById("hod-but");
             hodButton.classList.remove("hodChange");
             hodButton.disabled = false;
-            document.getElementById("hod-but").classList.remove("hidden");
             document.getElementById("lecs").classList.add("hidden");
             const lecBut = document.getElementById("lec-but");
             lecBut.classList.remove("lecChange");
             lecBut.disabled = false;
             document.getElementById("icon").classList.add("hidden");
+            document.getElementById("fback").classList.remove("hidden");
+        }
+
+        function iconReset1(){
+            console.log("1backclicked");
+            document.getElementById("princ-but").classList.add("hidden");
+            document.getElementById("hod-but").classList.add("hidden");
+            document.getElementById("lec-but").classList.add("hidden");
+            document.getElementById("stud-but").classList.remove("hidden");
+            document.getElementById("admin-but").classList.remove("hidden");
+            document.getElementById("fback").classList.add("hidden");
         }
 
         function getCookie(name) {
