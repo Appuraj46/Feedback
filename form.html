@@ -844,7 +844,7 @@
                 document.getElementById("register").addEventListener("click", function() {
                     event.preventDefault();
                     setCookie("formSubmitted", "true", 2);
-                    window.location.href = "submitted.html";
+                    window.location.replace("submitted.html");
                 });
             }
         }
