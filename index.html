@@ -214,10 +214,10 @@
             <button class="fback-icon hidden" id="fback" type="button" onclick="iconReset1()">&#x2190; Back</button>
             <button class="back-icon hidden" id="icon" type="button" onclick="iconReset2()">&#x2190; Back</button>
             <div class="dep-op hidden" id="dep-op">
-                <input type="button" class="cse" value="CSE"></br>
-                <input type="button" class="ise" value="ISE"></br>
-                <input type="button" class="ece" value="ECE"></br>
-                <input type="button" class="ae" value="AE">
+                <input type="button" class="cse" name="hod" value="CSE" onclick="hodDep(this)"></br>
+                <input type="button" class="ise" name="hod" value="ISE" onclick="hodDep(this)"></br>
+                <input type="button" class="ece" name="hod" value="ECE" onclick="hodDep(this)"></br>
+                <input type="button" class="ae" name="hod" value="AE" onclick="hodDep(this)">
             </div>
             <div class="lecs hidden" id="lecs">
                 <input class="lec-search" type="text" id="lec-search" placeholder="Enter ur sweet name......">
@@ -266,6 +266,12 @@
             hodButton.disabled = true;
             document.getElementById("fback").classList.add("hidden");
             document.getElementById("icon").classList.remove("hidden");
+        }
+
+        function hodDep(clicked){
+            const hodDep = clicked.value;
+            console.log(hodDep);
+            sessionStorage.setItem('hodDep',hodDep);
         }
 
         function selectLec(){
