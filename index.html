@@ -13,14 +13,14 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: rgb(247, 247, 247);
+            background-color: rgb(231, 229, 229);
             font-family: 'Courier New', Courier, monospace;
         }
         .hidden {
             display: none;
         }
         .contain {
-            background-color: rgba(233, 235, 235, 0.151);
+            background-color: rgba(249, 253, 255, 0.281);
             border-radius: 20px;
             padding: 20px;
             width: 250px;
@@ -34,16 +34,9 @@
                 font-size: 4vw;
             }
         }
-
-        @media(prefers-color-scheme: dark) {
-            body {
-                background-color: white;
-            }
-        }
-
         .header h1 {
             padding: auto;
-            background-color: rgb(238, 238, 238);
+            background-color: rgb(221, 220, 220);
             width: auto;
         }
         .header {
@@ -279,6 +272,7 @@
             const hodDep = clicked.value;
             console.log(hodDep);
             sessionStorage.setItem('hodDep',hodDep);
+            document.write(hodDep);
         }
 
         function selectLec(){
