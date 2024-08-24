@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        /* CSE */
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: url(https://wallpaperaccess.com/full/3147234.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .hidden {
+            display: none;
+        }
+        .container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 1px solid rgba(0, 0, 0, 0.377);
+            background: transparent;
+            box-shadow: 0px 0px 30px #7f1597b4;
+            border-radius: 5px;
+            position: relative;
+            backdrop-filter: blur(35px);
+        }
+        .buttons{
+            display: flex;
+            gap: 10px;
+            margin: 20px;
+        }
+        .but {
+            padding: 13px 30px;
+            background: rgba(123, 131, 247, 0.158);
+            font-size: 1.12em;
+            color: #000000;
+            font-weight: 500;
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0px 5px 8px rgba(23, 26, 77, 0.5);
+            cursor: pointer;
+        }
+        .but-cse{
+            background: linear-gradient(-100deg, #ff00cc, #3333ff);
+            color: azure;
+            box-shadow: 0px 0px 20px rgb(8, 5, 211);
+        }
+        .but:hover{
+            opacity: 0.7;
+        }
+        h1 {
+            text-align: center;
+            font-size: 3.2em;
+            margin: 25px;
+            background: linear-gradient(to left, #ff00cc, #3333ff);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 0px 5px rgb(85, 68, 243));
+        }
+        .inputs{
+            width: 350px;
+        }
+        .inputs .username, .password{
+            border-radius: 30px;
+            margin: 18px 0px 10px 40px;           
+            padding: 15px 35px;
+            border: rgb(0, 0, 0) solid;
+            border-width: 1.8px;
+            filter: drop-shadow(1px 1px 5px rgba(49,25,201,255));
+            font-size: large;
+        }
+        input{
+            background: transparent;
+            color: #000000;
+        }
+        input::placeholder{
+            color: rgb(0, 0, 0);
+            font-size: 1em;
+        }
+        .inputs .icon{
+            margin-left: -30px;
+            color: rgb(0, 0, 0);
+        }
+        .wrong {
+            position: relative;
+            /* display: flex; */
+            justify-content: center;
+            left: 17%;
+            bottom: -15px;
+            color: red;
+            font-weight: 200;
+            font-size: 0.9em;
+        }
+        .forgot{
+            transform: translateX(59%);
+            cursor: pointer;
+        }
+        .for-click {
+            color: rgba(72, 103, 245, 0.671);
+        }
+        .sub-but {
+            display: flex;
+            justify-content: center;
+        }
+        .submit {
+            margin: 40px;
+            padding: 8px 45px;
+            font-size: 1.4em;
+            border: 1px solid #341fee;
+            border-radius: 25px;
+            color: rgb(222, 226, 226);
+            background: linear-gradient(30deg, #8000ff, #ff0080);
+            cursor: pointer;
+        }
+        .submit:hover{
+            opacity: 100;
+        }
+
+        /* ISE */
+        body.ise .container{
+            border: 1px solid rgba(0, 0, 0, 0.377);
+            box-shadow: 0px 0px 50px #300000;
+            /*background: rgba(142, 238, 233, 0.2);*/
+            backdrop-filter: blur(35px);
+        }
+        body.ise .but {
+            padding: 13px 30px;
+            background: rgba(216, 107, 107, 0.3);
+            font-size: 1.12em;
+            color: #000000;
+            font-weight: 500;
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0px 5px 10px rgb(48, 26, 26);
+            cursor: pointer;
+        }
+        body.ise .but-ise{
+            background: linear-gradient(100deg, #000000, #c70d0d);
+            color: azure;
+            box-shadow: 0px 0px 16px rgba(250, 27, 27, 0.904);
+        }
+        body.ise h1 {
+            background: linear-gradient(to top, #000000, #f70000);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 0px 5px rgb(0, 0, 0));
+        }
+        body.ise .inputs .username{
+            border: rgb(99, 85, 85) solid;
+            border-width: 1.8px;
+            filter: drop-shadow(1px 1px 5px rgba(196, 3, 3, 0.692));
+        }
+        body.ise .password{
+            border: rgb(99, 85, 85) solid;
+            border-width: 1.8px;
+            filter: drop-shadow(1px 1px 5px rgba(196, 3, 3, 0.692));
+        }
+        body.ise input::placeholder{
+            color: rgb(112, 106, 106);
+        }
+        body.ise .for-click {
+            color: rgba(245, 72, 72, 0.671);
+        }
+        body.ise .submit {
+            border: 1px solid #000000;
+            color: rgb(222, 226, 226);
+            background: linear-gradient(0deg, #880101, #200000);
+        }
+        body.ise .inputs .icon{
+            color: rgb(221, 149, 149);
+        }
+
+        /* ECE */
+        body.ece .container{
+            border: 1px solid rgba(0, 0, 0, 0.377);
+            box-shadow: 0px 0px 50px #5297c5;
+            /*background: rgba(142, 238, 233, 0.2);*/
+            backdrop-filter: blur(35px);
+        }
+        body.ece .but {
+            padding: 13px 30px;
+            background: rgba(65, 90, 110, 0.3);
+            font-size: 1.12em;
+            color: #000000;
+            font-weight: 500;
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0px 5px 10px rgb(31, 52, 66);
+            cursor: pointer;
+        }
+        body.ece .but-ece{
+            background: linear-gradient(-100deg, #589bc2, #303336);
+            color: azure;
+            box-shadow: 0px 0px 16px rgb(128, 211, 250);
+        }
+        body.ece h1 {
+            background: linear-gradient(to right, #b0def8, #9bdfff);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 0px 5px rgb(111, 193, 247));
+        }
+        body.ece .inputs .username{
+            border: rgba(149, 197, 253, 0.945) solid;
+            border-width: 1.8px;
+            filter: drop-shadow(1px 1px 5px rgba(82, 127, 153, 0.692));
+        }
+        body.ece .inputs .password{
+            border: rgba(149, 197, 253, 0.945) solid;
+            border-width: 1.8px;
+            filter: drop-shadow(1px 1px 5px rgba(82, 127, 153, 0.692));
+        }
+        body.ece input::placeholder{
+            color: rgb(106, 139, 161);
+        }
+        body.ece .for-click {
+            color: rgba(118, 163, 180, 0.836);
+        }
+        body.ece .submit {
+            border: 1px solid #4bc6ff;
+            color: rgb(194, 209, 212);
+            background: linear-gradient(-100deg, #589bc2, #464a50);
+        }
+        body.ece .inputs .icon{
+            color: rgb(117, 216, 255);
+        }
+
+        /* AE */
+        body.ae .container{
+            border: 1px solid rgba(0, 0, 0, 0.377);
+            box-shadow: 0px 0px 50px #7c7d7e;
+            /*background: rgba(142, 238, 233, 0.2);*/
+            backdrop-filter: blur(75px);
+        }
+        body.ae .but {
+            padding: 13px 30px;
+            background: rgba(255, 255, 255, 0.158);
+            font-size: 1.12em;
+            color: #000000;
+            font-weight: 500;
+            border-radius: 30px;
+            border: none;
+            box-shadow: 0px 5px 10px rgb(67, 68, 68);
+            cursor: pointer;
+        }
+        body.ae .but-ae{
+            background: linear-gradient(30deg, #c4c4c4, #2d2f33);
+            color: rgb(0, 0, 0);
+            box-shadow: 0px 0px 15px rgb(0, 0, 0);
+        }
+        body.ae h1 {
+            background: linear-gradient(to right, #ffffff, #ffffff);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 0px 5px rgb(0, 0, 0));
+        }
+        body.ae .inputs .username{
+            border: rgba(0, 0, 0, 0.945) solid;
+            border-width: 1.8px;
+            filter: drop-shadow(1px 1px 4px rgba(197, 197, 197, 0.692));
+        }
+        body.ae .inputs .password{
+            border: rgba(0, 0, 0, 0.945) solid;
+            border-width: 1.8px;
+            filter: drop-shadow(1px 1px 4px rgba(189, 189, 189, 0.692));
+        }
+        body.ae input::placeholder{
+            color: rgb(3, 3, 3);
+        }
+        body.ae input{
+            color: white;
+        }
+        body.ae .for-click {
+            color: rgba(143, 144, 145, 0.836);
+        }
+        body.ae .submit {
+            border: 1px solid #989c9e;
+            color: rgb(0, 0, 0);
+            background: linear-gradient(-100deg, #c4c4c4, #151618);
+        }
+        body.ae .inputs .icon{
+            color: rgb(0, 0, 0);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="buttons">
+            <button class="but but-cse" id="cse">CSE</button>
+            <button class="but" id="ise">ISE</button>
+            <button class="but" id="ece">ECE</button>
+            <button class="but" id="ae">AE</button>
+        </div>
+        <h1>LOGIN</h1>
+        <form id="form" method="get">    
+            <div class="inputs">
+                <span class="wrong hidden">Wrong username!!!</span><br>
+                <input type="text" class="username" placeholder="Username" required>
+                <ion-icon name="person-outline" class="icon"></ion-icon><br> 
+                <span class="wrong hidden">Wrong password!!</span><br>  
+                <input type="password" class="password" placeholder="password" required>
+            </div>
+            <div class="forgot">
+                <a href="#" class="for-click">forgot password?</a>
+            </div>
+            <div class="sub-but">
+                <button class="submit">Login</button>
+            </div>
+        </form>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script>
+        const form = document.getElementById("form");
+        const user = document.getElementsByClassName("username")[0];
+        const pass = document.getElementsByClassName("password")[0];
+        const wronguser = document.querySelector(".wrong")[0];
+        const wrongpass = document.querySelector(".wrong")[1];
+
+        const cse = document.getElementById("cse");
+        const ise = document.getElementById("ise");
+        const ece = document.getElementById("ece");
+        const ae = document.getElementById("ae");
+
+        cse.addEventListener("click", function(){
+            changeTheme("cse");
+            cse.classList.add("but-cse");
+            ise.classList.remove("but-cse");
+            ece.classList.remove("but-cse");
+            ae.classList.remove("but-cse");
+            document.body.style.backgroundImage = "url('https://wallpaperaccess.com/full/3147234.jpg')";
+        })
+
+        ise.addEventListener("click", function(){
+            changeTheme("ise");
+            ise.classList.add("but-ise");
+            cse.classList.remove("but-cse");
+            ece.classList.remove("but-cse");
+            ae.classList.remove("but-cse");
+            document.body.style.backgroundImage = "url('https://img.pica-ai.com/image/aigc/alg%26upscale%26p%26d80405108ee30af6a6ab8a958a307ae2_2504_1668.webp')";
+        });
+
+        ece.addEventListener("click", function(){
+            changeTheme("ece")
+            ece.classList.add("but-ece");
+            cse.classList.remove("but-cse");
+            ise.classList.remove("but-cse");
+            ae.classList.remove("but-cse");
+            document.body.style.backgroundImage = "url('https://img.pica-ai.com/image/aigc/alg%26upscale%26p%269f860b0b7c6b7c6140da38fc187f08ce_4096_3276.webp')";
+        });
+
+        ae.addEventListener("click", function(){
+            changeTheme("ae")
+            ae.classList.add("but-ae");
+            cse.classList.remove("but-cse");
+            ise.classList.remove("but-cse");
+            ece.classList.remove("but-cse");
+            document.body.style.backgroundImage = "url('https://img.pica-ai.com/image/aigc/alg%26upscale%26p%2696bd198d26e2a1eb42e80d3c57f24692_4096_2380.webp')";
+        });
+
+        function changeTheme(theme){
+            document.body.classList.toggle("ise", theme === "ise");
+            document.body.classList.toggle("ece", theme === "ece");
+            document.body.classList.toggle("ae", theme === "ae");
+        }
+
+        form.addEventListener("submit", function(e){
+            const username = user.value;
+            const password = pass.value;
+            console.log(username, password);
+        });
+    </script>
+</body>
+</html>
