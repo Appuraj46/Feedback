@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <title>Feedback</title>
     <style>
         body {
@@ -257,7 +256,8 @@
         }
 
         function selectHod(){
-            console.log("hodclicked");
+            window.location.href = "login.html";
+            /*console.log("hodclicked");
             document.getElementById("lec-but").classList.add("hidden");
             document.getElementById("princ-but").classList.add("hidden");
             document.getElementById("dep-op").classList.remove("hidden");
@@ -265,7 +265,7 @@
             hodButton.classList.add("hodChange");
             hodButton.disabled = true;
             document.getElementById("fback").classList.add("hidden");
-            document.getElementById("icon").classList.remove("hidden");
+            document.getElementById("icon").classList.remove("hidden");*/
         }
 
         function hodDep(clicked){
