@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <title>Login page</title>
     <style>
         * {
@@ -396,8 +397,8 @@
         form.addEventListener("submit", function(e){
             e.preventDefault();
             const username = user.value.toLowerCase();
-            const password = pass.value;
-            console.log(username, password);
+            const password = CryptoJS.SHA256(pass.value).toString(Crypto.enc.Hex);
+            console.log(username, paas = pass.value);
             if(username === realuser && password === realpass){
                 document.write(username,password);
             } else if(username === realuser){
@@ -415,7 +416,7 @@
             }
         });
         const realuser = "hod";
-        const realpass = "1234";
+        const realpass = "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4";
     </script>
 </body>
 </html>
