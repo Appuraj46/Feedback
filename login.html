@@ -328,61 +328,94 @@
         const form = document.getElementById("form");
         const user = document.getElementsByClassName("username")[0];
         const pass = document.getElementsByClassName("password")[0];
-        const wronguser = document.querySelector(".wrong")[0];
-        const wrongpass = document.querySelector(".wrong")[1];
+        const wronguser = document.querySelectorAll(".wrong")[0];
+        const wrongpass = document.querySelectorAll(".wrong")[1];
 
         const cse = document.getElementById("cse");
         const ise = document.getElementById("ise");
         const ece = document.getElementById("ece");
         const ae = document.getElementById("ae");
 
+        user.addEventListener("input", function(){
+            wronguser.classList.add("hidden");
+        });
+        pass.addEventListener("input", function(){
+            wrongpass.classList.add("hidden");
+        });
+
         cse.addEventListener("click", function(){
             changeTheme("cse");
+            user.value = "";
+            pass.value = "";
             cse.classList.add("but-cse");
             ise.classList.remove("but-cse");
             ece.classList.remove("but-cse");
             ae.classList.remove("but-cse");
-            document.body.style.backgroundImage = "url('cse.png')";
-        })
+            document.body.style.backgroundImage = "url(cse.png)";
+        });
 
         ise.addEventListener("click", function(){
             changeTheme("ise");
+            user.value = "";
+            pass.value = "";
             ise.classList.add("but-ise");
             cse.classList.remove("but-cse");
             ece.classList.remove("but-cse");
             ae.classList.remove("but-cse");
-            document.body.style.backgroundImage = "url('ise.png')";
+            document.body.style.backgroundImage = "url(ise.png)";
         });
 
         ece.addEventListener("click", function(){
             changeTheme("ece")
+            user.value = "";
+            pass.value = "";
             ece.classList.add("but-ece");
             cse.classList.remove("but-cse");
             ise.classList.remove("but-cse");
             ae.classList.remove("but-cse");
-            document.body.style.backgroundImage = "url('ece.png')";
+            document.body.style.backgroundImage = "url(ece.png)";
         });
 
         ae.addEventListener("click", function(){
             changeTheme("ae")
+            user.value = "";
+            pass.value = "";
             ae.classList.add("but-ae");
             cse.classList.remove("but-cse");
             ise.classList.remove("but-cse");
             ece.classList.remove("but-cse");
-            document.body.style.backgroundImage = "url('ae.png')";
+            document.body.style.backgroundImage = "url(ae.png)";
         });
 
         function changeTheme(theme){
             document.body.classList.toggle("ise", theme === "ise");
             document.body.classList.toggle("ece", theme === "ece");
             document.body.classList.toggle("ae", theme === "ae");
-        }
-
+        };
+        
         form.addEventListener("submit", function(e){
-            const username = user.value;
+            e.preventDefault();
+            const username = user.value.toLowerCase();
             const password = pass.value;
             console.log(username, password);
+            if(username === realuser && password === realpass){
+                document.write(username,password);
+            } else if(username === realuser){
+                wrongpass.classList.remove("hidden");
+                pass.value = "";
+            } else if(password === realpass){
+                wronguser.classList.remove("hidden");
+                user.value = "";
+                pass.value = "";   
+            } else {
+                wronguser.classList.remove("hidden");
+                wrongpass.classList.remove("hidden");
+                user.value = "";
+                pass.value = "";
+            }
         });
+        const realuser = "hod";
+        const realpass = "1234";
     </script>
 </body>
 </html>
