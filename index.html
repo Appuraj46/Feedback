@@ -3,361 +3,703 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback</title>
+    <title>Feedback index</title>
     <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        *{
+            padding: 0;
             margin: 0;
-            background-color: rgb(241, 241, 241);
-            font-family: 'Courier New', Courier, monospace;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
         }
-        .hidden {
+        .hidden{
             display: none;
         }
-        .contain {
-            background-color: rgba(213, 214, 214, 0.281);
-            border-radius: 20px;
-            padding: 20px;
-            width: 250px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        body{
+            background-image: linear-gradient(rgba(255,255,255,.8), rgba(255,255,255,.8)),url(https://www.agarum.com/photos/1/2/45/723/c/l/e8e545f9a08792451a1c10189d638dea.jpg);
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
         }
-        @media (max-width: 500px) {
-            .header h1{
-                font-size: 4vw;
-            }
+        #load{
+            background: rgb(255, 255, 255) url(load.gif) no-repeat center;
+            background-size: 100px;
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            z-index: 100;
         }
-        .header h1 {
-            padding: auto;
-            background-color: rgb(221, 220, 220);
-            width: auto;
-        }
-        .header {
-            position: absolute;
+        header{
+            position: relative;
+            right: 0;
             top: 0;
             width: 100%;
-            text-align: center;
-        }
-        h1 {
-            color: black;
-            font-size: 2.5vh;
-            margin: 0;
-            vertical-align: middle;
-        }
-        h2 {
-            color: black;
-            font-size: 2.5vh;
-            text-decoration-line: underline;
-            text-decoration-thickness: 0.03em;
-        }
-        img {
-            width: 8vh;
-            vertical-align: middle;
-        }
-        .loghead {
-            display: inline-block;
-            text-align: center;
-        }
-        .stud-but{
-            margin-top: 10%;
-            padding: 5% 15%;
-            width: auto;
-            border-radius: 10px;
-            font-weight: 700;
-            border-color: blue;
-            border-width: 0.12em;
-            cursor: pointer;
-        }
-        .admin-but {
-            margin-top: 20%;
-            margin-bottom: 4%;
-            padding: 5% 18.5%;
-            width: auto;
-            border-radius: 8px;
-            font-weight: 700;
-            border-color: red;
-            border-width: 0.1em;
-            cursor: pointer;
-        }
-        .princ-but {
-            margin-top: 5%;
-            padding: 3% 8%;
-            width: auto;
-            border-radius: 8px;
-            font-weight: 700;
-            border-color: rgb(231, 72, 72);
-            border-width: 0.1em;
-            cursor: pointer;
-        }
-        .hod-but {
-            margin-top: 15%;
-            padding: 2.8% 13.5%;
-            width: auto;
-            border-radius: 8px;
-            font-weight: 700;
-            border-color: rgb(53, 231, 127);
-            border-width: 0.1em;
-            cursor: pointer;
-        }
-        .lec-but {
-            margin-top: 8%;
-            margin-bottom: 8%;
-            padding: 3% 9%;
-            width: auto;
-            border-radius: 8px;
-            font-weight: 700;
-            border-color: rgb(81, 230, 230);
-            border-width: 0.1em;
-            cursor: pointer;
-        }
-        .hod{
-            width: 50%;
-            cursor: pointer;
-        }
-        .hodChange{
-            position: absolute;
-            margin-top: 1.6em;
-            margin-left: -14.5em;
-            padding: 0.8em 1.8em;
-            color: rgba(0, 0, 0, 0.664);
-            border-color: rgba(255, 0, 0, 0.61);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px;
+            background-color: rgba(236, 236, 235, 0.959);
+            /* border: rgb(0, 0, 0) solid; */
+            border-width: .1px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.815);
+            flex-wrap: wrap;
             cursor: default;
         }
-        .lecChange{
-            position: absolute;
-            margin-top: 1.5em;
-            margin-left: -13.3em;
-            padding: 0.8em 1em;
-            color: rgba(0, 0, 0, 0.664);
-            border-color: rgba(0, 225, 255, 0.61);
-            cursor: default;
+        .logo{
+            height: 100px;
+            margin-right: auto;
+            float: left;
         }
-        .back-icon, .fback-icon{
-            position: absolute;
-            margin-top: -0.5em;
-            margin-left: -16em;
-            border-radius: 0.8em;
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        h1{
+            position: relative;
+            transform: translateY(10%);
+            display: flex;
+            font-size: 3em;
+            font-weight: 900;
+        }
+        .headoption{
+            display: flex;
+            list-style: none;
+            position: relative;
+            font-size: x-large;
+            gap:35px;
+            padding: 5px 150px 1px 15px;
+        }
+        .headoption a{
+            color: rgb(78, 77, 77);
+            text-decoration: none;
             cursor: pointer;
-            color: rgb(0, 0, 0);
-            background-color: rgb(187, 185, 185);
-            border-color: rgb(77, 73, 80);
-            border-width: 0.1em;
+            padding: 2px 6px;
         }
-        .back-icon:hover, .fback-icon:hover {
-            background-color: #a39f9f;
+        .headoption a:hover,
+        .headoption .home-active{
+            background-color: rgba(238, 238, 17, 0.767);
+            border-radius: 20px;
+            transition: background .2s;
         }
-        .cse {
-            margin-top: 3.5em;
-        }
-        .cse, .ise, .ece, .ae{
-            margin-bottom: 1em;
-            padding: 6px 0px;
-            width: 5em;
-            border-color: black;
-            font-weight: 600;
+        .goad{
+            display: flex;
+            position: absolute;
+            right: 10px;
+            flex-direction: column;
+            align-items: center;
+            color: rgb(119, 3, 3);
             cursor: pointer;
         }
-        .dep-op :hover {
-            background-color: #bdb9b9;
-            border-color: #757373;
+        .goad ion-icon{
+            font-size: 3.5em;
         }
-        .lecs {
-            margin-top: 80px;
-            margin-bottom: 100px;
+        .goad ion-icon:hover{
+            background-color: gray;
+            border-radius: 30px;
         }
-        .lec-search {
-            padding: 0.5em 0.5em;
-            border-color: rgb(0, 0, 0);
-            border-width: 0.2em;
-            border-radius: 1em;
+        .go-admin, .go-stud{
+            font-size: 1em;
+            font-weight: bold;
         }
-        .lecList {
-            display: none;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            max-height: 100px;
-            overflow-y: auto;
+        .clicked{
+            color: rgb(3, 15, 119);
         }
-        .lecList.active {
-            display: block;
+        .admin-cont{
+            transition: 1s ease-in-out;
+            opacity: 0;
+            transform: translateY(20px);
+            padding: 5px;
+            background-size: cover;
+            background: rgba(255, 255, 255, 0.548);
         }
-        .lecList div {
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .princ, .hod, .lec{
+            /* border: 1px black dotted; */
+            padding: 5px;
+            margin-top: 5px;
+        }
+        .admin-cont h2{
+            font-size: 3em;
+            text-decoration: underline;
+            text-shadow: 0px 0px 1.2px rgb(202, 206, 4);
+        }
+        .admin-cont button{
+            position: relative;
+            left: 50%;
+            transform: translate(-50%,0%);
+            margin: 20px 0px;
             padding: 10px;
+            font-size: 1.5em;
+            border-radius: 5px; 
+            color: black;
+            border: 1.5px rgb(255, 0, 0) solid;
             cursor: pointer;
         }
-        .lecList div:hover {
-            background-color: #ddd;
+        .admin-cont p{
+            text-indent: 35px;
+            padding: 15px 10px;
+            font-size: 2em;   
         }
+        .mob{
+            display: none;
+        }
+        .stud-cont{
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.548);
+        }
+        .stud-cont h2{
+            text-align: center;
+            font-size: 3.2em;
+            padding: 15px 0px 20px 0px;
+            text-decoration: underline 2px;
+        }
+        .p1{
+            text-align: center;
+            font-size: 2em;
+            text-shadow: 0px 0px 1px blueviolet;
+        }
+        .p2{
+            font-size: 1.7em;
+            text-indent: 30px;
+            padding: 20px 10px 5px 10px;
+        }
+        .p3{
+            font-size: 1.7em;
+            text-indent: 30px;
+            padding: 15px 10px 5px 10px;
+        }
+        .p4{
+            font-size: 1.7em;
+            text-align: center;
+        }
+        .p5{
+            font-size: 1.5em;
+            padding: 20px 0px 10px 0px;
+            text-shadow: 0px 0px 1px blue;
+            text-align: center;
+        }
+        .stud-but {
+            background-color: #007BFF;
+            color: white;
+            padding: 11px 21px;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%,50%);
+            /* margin: 20px; */
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .note{
+            margin: 50px 0 0 0;
+        }
+        .note h3{
+            font-size: 2em;
+        }
+        ol{
+            margin: 5px 0px 0px 10px;
+            padding: 0 0 0 10px;
+            font-size: 1.5em;
+            line-height: 150%;
+        }
+        .about{
+            margin: 50px 0 0 0;
+            text-align: center;
+        }
+        .about h3{
+            font-size: 2.5em;
+            text-align: left;
+        }
+        .table{
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .table thead{
+            background-color: #f2f2f2;
+        }
+        .table th, .table td{
+            border: 1px solid #a5a4a4;
+            padding: 12px;
+        }
+        .table th{
+            background-color: #8a8c8d;
+            color: rgb(0, 0, 0);
+        }
+        .table td{
+            background-color: #ffffff;
+        }
+        footer{
+            background-color: rgba(236, 236, 235, 0.959);
+            /* border: 1px black solid; */
+            box-shadow: 0 0 5px black;
+            width: 100%;
+            padding: 10px 10px 10px 10px;
+        }
+        footer h3{
+            font-size: 1.8em;
+            text-shadow: 0px 0px 1px rgb(245, 163, 163);
+            text-align: center;
+        }
+        footer h4{
+            margin: 12px 0 15px 0;
+            font-size: 1.6em;
+            text-decoration: underline;
+            text-align: center;
+        }
+        .contact{
+            display: flex;
+            justify-content: space-evenly;
+            margin: 0 auto;
+        }
+        .contact h5{
+            text-decoration: underline ;
+            font-size: 1.3em;
+            position: relative;
+            text-align: center;
+            padding: 0 0 10px 0;
+        }
+        .contact ion-icon{
+            float: left;
+            position: relative;
+            font-size: 1.4em;
+        }
+        .contact p{
+            font-size: 1.1em;
+            padding-left: 20px;
+        }
+        .inner{
+            /* border: 1px black solid; */
+            display: flex;
+            justify-content: center;
+        }
+        .detail{
+            /* border: 1px red solid; */
+            width: 150px;
+        }
+        .loc{
+            margin-right: -80px;
+        }
+        .copy{
+            background-color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 5px 0;
+            width: 100%;
+        }
+        .copy p{
+            color: white;
+            margin: 0;
+            font-size: 16px;
+        }
+        ::-webkit-scrollbar{
+            width: 5px;
+            background: rgb(255, 255, 255);
+        }
+        ::-webkit-scrollbar-thumb{
+            background-color: rgb(0, 0, 0);
+            border-radius: 10px;
+        }
+        #uplog{
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            cursor: pointer;
+            font-size: 50px;
+            color: #1b1b1b;
+            background: transparent;
+        }
+        
+        @media (max-width: 500px){
+            h1{
+                font-size: 1.2em;
+                position: relative;
+                transform: translateY(5%);
+            }
+            .logo{
+                height: 50px;
+            }
+            .headoption{
+                font-size: small;
+            }
+            .admin-cont h2{
+                font-size: 1.7em;
+            }
+            #studbut{
+                font-size: 1em;
+            }
+            .goad ion-icon{
+                font-size: 2em;
+            }
+            .go-admin{
+                font-size: .8em;
+            }
+            .admin-cont button{
+                font-size: 1em;
+            }
+            .admin-cont p{
+                font-size: 1em;
+            }
+            .pc{
+                display: none;
+            }
+            .mob{
+                display: block;
+            }
+            .stud-cont h2{
+                font-size: 2em;
+            }
+            .p1{
+                font-size: 1.5em;
+            }
+            .p2{
+                font-size: 1em;
+            }
+            .p3{
+                font-size: 1em;
+            }
+            .p4{
+                font-size: 1.1em;
+            }
+            .p5{
+                font-size: 1.3em;
+            }
+            .stud-but {
+                padding: 11px 21px;
+                border-radius: 6px;
+                font-size: 15px;
+            }
+            .note h3{
+                font-size: 1.5em;
+            }
+            ol{
+                margin: 5px 0px 0px 10px;
+                padding: 0 0 0 20px;
+                font-size: 1em;
+            }
+            .about h3{
+                font-size: 2em;
+            }
+            footer{
+                width: 100%;
+                padding: 10px 10px 5px 10px;
+            }
+            footer h3{
+                font-size: 1.5em;
+                text-shadow: 0px 0px 1px rgb(245, 163, 163);
+                text-align: center;
+            }
+            footer h4{
+                margin: 12px 0 5px 0;
+                font-size: 1.5em;
+                text-decoration: underline;
+                /* text-align: center; */
+            }
+            .contact{
+                flex-direction: column;
+            }
+            .contact h5{
+                text-decoration: underline ;
+                font-size: 1.3em;
+                text-align: left;
+                padding: 15px 0 15px 0;
+            }
+            .contact ion-icon{
+                float: left;
+            }
+            .contact p{
+                font-size: 1.1em;
+                padding: 0 50px 10px 30px;
+            }
+            .detail{
+                width: 100%;
+            }
+            .contact br{
+                display: none;
+            }
+            #uplog{
+                font-size: 50px;
+                color: #696969;
+            }
+        }
+        
     </style>
 </head>
 <body>
-    <div class="header">    
-        <div class="loghead">
-            <h1><img src="https://github.com/Appuraj46/resub/blob/main/logo.png?raw=true" alt="logo">SHREE DEVI INSTITUTE OF TECHNOLOGY</h1>
-        </div>
-            <h2>FEEDBACK FORM</h2>
+    <div id="load"></div>
+    <div id="uplog" class="hidden">
+        <ion-icon name="caret-up-circle-outline"></ion-icon>
     </div>
-    <form>
-        <div class="contain">
-            <button class="stud-but" id="stud-but" type="button" onclick="selectStud()">STUDENT</button><br>
-            <button class="admin-but" id="admin-but" type="button" onclick="selectAdmin()">ADMIN</button>
-            <button class="princ-but hidden" id="princ-but" type="button">PRINCIPAL</button>
-            <button class="hod-but hidden" id="hod-but" type="button" onclick="selectHod()">HOD</button><br>
-            <button class="lec-but hidden" id="lec-but" type="button" onclick="selectLec()">LECTURES</button>
-            <button class="fback-icon hidden" id="fback" type="button" onclick="iconReset1()">&#x2190; Back</button>
-            <button class="back-icon hidden" id="icon" type="button" onclick="iconReset2()">&#x2190; Back</button>
-            <div class="dep-op hidden" id="dep-op">
-                <input type="button" class="cse" name="hod" value="CSE" onclick="hodDep(this)"></br>
-                <input type="button" class="ise" name="hod" value="ISE" onclick="hodDep(this)"></br>
-                <input type="button" class="ece" name="hod" value="ECE" onclick="hodDep(this)"></br>
-                <input type="button" class="ae" name="hod" value="AE" onclick="hodDep(this)">
+    <header>
+        <div class="loghead" id="home">
+            <img class="logo" src="https://github.com/Appuraj46/resub/blob/main/logo.png?raw=true" alt="logo">
+            <div class="h1">
+                <h1>SHREE DEVI INSTITUTE OF TECHNOLOGY</h1>
             </div>
-            <div class="lecs hidden" id="lecs">
-                <input class="lec-search" type="text" id="lec-search" placeholder="Enter ur sweet name......">
-                <div class="lecList hidden" id="lecList"></div>
+        </div>    
+        <ul class="headoption">
+            <li id="ho" class="home-active"><a href="#home">Home</a></li>
+            <li id="ab"><a href="#about">About</a></li>
+            <li id="co"><a href="#footer">Contact</a></li>
+        </ul>
+        <div class="goad">
+            <ion-icon name="person-circle-outline" id="goad-icon"></ion-icon>
+            <ion-icon  name="people-outline" id="gost-icon" class=" hidden"></ion-icon>
+            <span class="go-admin" id="go-admin">Go admin</span>
+            <span class="go-stud hidden" id="go-stud">Go student</span>
+        </div>
+    </header>
+    <div class="admin-cont hidden">
+        <div class="princ">
+            <h2>Principal</h2>
+            <button class="princ-but" id="princ-but" onclick="princBut()">Review</button>
+            <p class="pc">The Principal oversees the entire academic institution, ensuring that all departments function efficiently and that the institution maintains its academic standards. By reviewing student feedback, the Principal can gain insights into the overall performance of faculty members, identify areas for institutional improvement, and implement strategic changes to foster a positive learning environment. This feedback is crucial for guiding future decisions that affect both faculty and students.</p>
+            <p class="mob">As the head of the institution, the Principal reviews the overall performance and feedback to ensure quality education standards are maintained.</p>
+        </div>
+        <hr>
+        <div class="hod">
+            <h2>Hod</h2>
+            <button class="hod-but" id="hod-but" onclick="hodBut()">Review</button>
+            <p class="pc">The HOD plays a pivotal role in managing the academic progress and quality of education within their department. By analyzing student feedback, the HOD  can identify specific strengths and challenges faced by the faculty in their department. This enables them to address issues such as curriculum effectiveness, teaching methods, and student satisfaction. The HOD's insights from the feedback can help tailor department policies to improve academic outcomes and foster a supportive environment for both staff and students.</p>
+            <p class="mob">The HOD evaluates feedback specific to their department, ensuring that course delivery and faculty performance align with departmental goals.</p>
+        </div>
+        <hr>
+        <div class="lec">
+            <h2>Lecturer</h2>
+            <button class="lec-but" id="lec-but" onclick="lecBut()">Review</button>
+            <p class="pc">Lecturers are directly responsible for shaping the learning experience of their students Feedback from students provides valuable input on teaching methods, engagement, clarity of explanations, and the overall classroom environment. By reviewing this feedback, lecturers can gain a better understanding of their approach to make lessons more effective and engaging. This ongoing reflection helps lecturers continuously improve and adapt to ensure students achieve their academic potential.</p>
+            <p class="mob">Lecturers can view student feedback to reflect on their teaching and make necessary improvements for enhanced learning experiences.</p>
+        </div>
+    </div>
+    <div class="stud-cont">
+        <h2>Student Feedback</h2>
+        <div class="intro">
+            <p class="p1">"We Value Your Feedback"</p>
+            <p class="p2">Your Feedback is essential to helping us improve both the academic and student experience. By sharing your insights, you're helping the institution identify areas for growth and development. Let your vice be heard and help shape the future of our educational environment.</p>
+            <p class="p4">Take a few minutes to fill out our simple feedback form and contribute to enhancing our campus for everyone.</p>
+            <p class="p5">"Click the button below to begin. The process is quick, and your feedback is anonymous."</p>
+            <button class="stud-but" id="stud-but" onclick="studBut()">Submit Feedback</button>
+        </div>
+        <div class="note">
+            <h3><u>Note</u>:-</h3>
+            <ol>
+                <li>This Feedback form is for the current students of SDIT.</li>
+                <li>This Feedback form gives you an opportunity to convey your response towards your lecturer who taught you in your classes.</li>
+                <li>Give Feedback that avoids "emotionally-charged" words.</li>
+                <li>Your inputs will help to achieve high standards of teaching and research at SDIT.</li>
+                <li>The feedback will help to asses performance of individual faculty members and help University in enhancing the performance of poor performers.</li>
+            </ol>
+        </div>
+        <div class="about" id="about">
+            <hr>
+            <h3>About</h3>
+            <p class="p3">At Shree Devi Institute Of Technology, we believe that high-quality teaching is the foundation of student success. Your feedback about your lecturers is essential in helping us maintain and enhance the learning experience. By sharing your insights on teaching methods, course content delivery, and classroom engagement, you contribute to ensuring that our faculty is aligned with your learning needs. This feedback helps us recognize outstanding teaching while identifying areas where improvements can be made. Your perspective is vital in shaping the educational environment, and by providing your feedback, you play a key role in supporting the development of our lecturers. Rest assured, all feedback is anonymous, and your honest thoughts will contribute directly to enhancing the quality of education for both current and future students.</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Less Helpful Comments</th>
+                        <th>Helpful Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Less Helpful Comments">This professor was awesome.</td>
+                        <td data-label="Helpful Comments">This professor gave us lots of activities to do in the classroom which helped me really understand what I was doing rather than remembering stuff for a quiz.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Less Helpful Comments">This professor sucks.</td>
+                        <td data-label="Helpful Comments">I had a problem understanding all the jargon in many of the lectures. It would have helped me  if you talked in plainer English.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Less Helpful Comments">This professor doesn't like students.</td>
+                        <td data-label="Helpful Comments">I wish you had talked to the class like you were teaching people and not just the content of his subject. I would have liked you to check for understanding at certain points in the lecture.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Less Helpful Comments">The professor just talked at us in the lecture.</td>
+                        <td data-label="Helpful Comments">I would have preferred if we could have done some group work to discuss some of the ideas with our peers</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Less Helpful Comments">This professor was motivating.</td>
+                        <td data-label="Helpful Comments">This professor told us stories about how he collected data for his research and made me enthusiastic to want to do the same.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Less Helpful Comments">The professor never went over the homework.</td>
+                        <td data-label="Helpful Comments">It would have been helpful if the professor incorporated a few of the homework problems into the lecture so we could have seen how to go about solving them and could ask questions if we still didn't understand.</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Less Helpful Comments">The professor was caring.</td>
+                        <td data-label="Helpful Comments">I really appreciated the way the professor was always there after class to answer questions and always responded to my e-mails.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <footer id="footer">
+        <div class="fot-name">
+            <h3>Shree Devi Institute Of Technology (SDIT)</h3>
+            <h4>Contact Us</h4>
+        </div>
+        <div class="contact">
+            <div class="college">
+                <h5>College</h5>
+                <div class="inner">
+                    <div class="detail">
+                        <ion-icon name="mail-outline"></ion-icon><p> sditpricipal@gmail.com</p><br>
+                        <ion-icon name="call-outline"></ion-icon><p> +91 (824) 2254102, 2254104</p><br>
+                        <ion-icon name="location-outline"></ion-icon><p class="loc">Shree Devi Institute Of Technology,<br> Kenjar, Airport Road, Mangalore <br>574 142, Karnataka</p>
+                    </div>
+                </div>
+            </div>
+            <div class="trust">
+                <h5>Trust-Office</h5>
+                <div class="inner">
+                    <div class="detail">
+                        <ion-icon name="mail-outline"></ion-icon><p> sditpricipal@gmail.com</p><br>
+                        <ion-icon name="call-outline"></ion-icon><p> +91 (824) 2457937, 2456511, 2456501</p><br>
+                        <ion-icon name="location-outline"></ion-icon><p class="loc">Shree Devi Education Trust,<br> Ballalbagh, Mangalore <br>575 003, Karnataka</p>
+                    </div>
+                </div>
+            </div>
+            <div class="dev">
+                <h5>Dev help</h5>
+                <div class="inner">
+                    <div class="detail">
+                        <ion-icon name="mail-outline"></ion-icon><p> @gmail.com</p><br>
+                        <ion-icon name="call-outline"></ion-icon><p> +91 1234567890</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
-    <script>
-        const lecturesOp = [
-            "lec1","lec2","lec3","lec4","lec5","lec rec1","lec6","lec7","lec8","lec9","lec10",
-            "lec11","lec12","lec13","lec14","lec15","lec16","lec17","lec18","lec19","lec20"
-        ];
-
-        function selectStud(){
-            console.log("studclicked")
-            if (getCookie("formSubmitted") === "true") {
-                window.location.href = "resub.html";
-            }
-            else{
-                window.location.href = "form.html";
-            }
-            
-        }
-
-        function selectAdmin(){
-            console.log("adminclicked");
-            document.getElementById("stud-but").classList.add("hidden");
-            document.getElementById("admin-but").classList.add("hidden");
-            document.getElementById("princ-but").classList.remove("hidden");
-            document.getElementById("hod-but").classList.remove("hidden");
-            document.getElementById("lec-but").classList.remove("hidden");
-            document.getElementById("fback").classList.remove("hidden");
-        }
-
-        function selectPrinc(){
-            console.log("princclicked");
-        }
-
-        function selectHod(){
-            window.location.href = "login.html";
-            /*console.log("hodclicked");
-            document.getElementById("lec-but").classList.add("hidden");
-            document.getElementById("princ-but").classList.add("hidden");
-            document.getElementById("dep-op").classList.remove("hidden");
-            const hodButton = document.getElementById("hod-but");
-            hodButton.classList.add("hodChange");
-            hodButton.disabled = true;
-            document.getElementById("fback").classList.add("hidden");
-            document.getElementById("icon").classList.remove("hidden");*/
-        }
-
-        function hodDep(clicked){
-            const hodDep = clicked.value;
-            console.log(hodDep);
-            sessionStorage.setItem('hodDep',hodDep);
-            document.write(hodDep);
-        }
-
-        function selectLec(){
-            console.log("lecclicked");
-            document.getElementById("princ-but").classList.add("hidden");
-            document.getElementById("hod-but").classList.add("hidden");
-            document.getElementById("lecs").classList.remove("hidden");
-            const lecBut = document.getElementById("lec-but");
-            lecBut.classList.add("lecChange");
-            lecBut.disabled = true;
-            document.getElementById("fback").classList.add("hidden");
-            document.getElementById("icon").classList.remove("hidden");
-        }
-
-        const lecSearch = document.getElementById("lec-search");
-        const lecList = document.getElementById("lecList");
-
-        lecSearch.addEventListener("input", () => {
-            const value = lecSearch.value.toLowerCase();
-            lecList.innerHTML = "";
-            if (value) {
-                lecList.classList.add("active");
-                const filteredOptions = lecturesOp.filter(option => option.toLowerCase().includes(value));
-                filteredOptions.forEach(option => {
-                    const optionElement = document.createElement("div");
-                    optionElement.textContent = option;
-                    optionElement.addEventListener("click", () => {
-                        lecSearch.value = option;
-                        lecList.classList.remove("active");
-                    });
-                    lecList.appendChild(optionElement);
-                });
-            } else {
-                lecList.classList.remove("active");
-            }
-        });
-
-        document.addEventListener("click", (event) => {
-            if (!lecList.contains(event.target) && event.target !== lecSearch) {
-                lecList.classList.remove("active");
-            }
-        });
-
-        function iconReset2(){
-            console.log("2backclicked");
-            document.getElementById("princ-but").classList.remove("hidden");
-            document.getElementById("hod-but").classList.remove("hidden");
-            document.getElementById("lec-but").classList.remove("hidden");
-            document.getElementById("dep-op").classList.add("hidden");
-            const hodButton = document.getElementById("hod-but");
-            hodButton.classList.remove("hodChange");
-            hodButton.disabled = false;
-            document.getElementById("lecs").classList.add("hidden");
-            const lecBut = document.getElementById("lec-but");
-            lecBut.classList.remove("lecChange");
-            lecBut.disabled = false;
-            document.getElementById("icon").classList.add("hidden");
-            document.getElementById("fback").classList.remove("hidden");
-        }
-
-        function iconReset1(){
-            console.log("1backclicked");
-            document.getElementById("princ-but").classList.add("hidden");
-            document.getElementById("hod-but").classList.add("hidden");
-            document.getElementById("lec-but").classList.add("hidden");
-            document.getElementById("stud-but").classList.remove("hidden");
-            document.getElementById("admin-but").classList.remove("hidden");
-            document.getElementById("fback").classList.add("hidden");
-        }
-
-        function getCookie(name) {
-            const cname = name + "=";
-            const decodedCookie = decodeURIComponent(document.cookie);
-            const ca = decodedCookie.split(';');
-            for (let i = 0; i < ca.length; i++) {
-                let c = ca[i];
-                while (c.charAt(0) === ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(cname) === 0) {
-                    return c.substring(cname.length, c.length);
-                }
-            }
-            return "";
-        }
-    </script>
+    </footer>
+    <div class="copy">
+        <p>&copy; 2024 SDIT . All rights reserved</p>
+    </div>
 </body>
+<script type="module" src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js"></script>
+<script>
+    const load = document.getElementById("load");
+    const ho = document.getElementById("ho");
+    const ab = document.getElementById("ab");
+    const co = document.getElementById("co");
+    const upLog = document.getElementById("uplog");
+    const adCol = document.querySelectorAll(".goad")[0];
+    const adIcon = document.getElementById("goad-icon");
+    const stIcon = document.getElementById("gost-icon");
+    const goAd = document.getElementById("go-admin");
+    const goSt = document.getElementById("go-stud");
+    const admins = document.querySelectorAll(".admin-cont")[0];
+    const studs = document.querySelectorAll(".stud-cont")[0];
+
+    window.addEventListener("load", function(){
+        setTimeout(() => {
+            load.classList.add("hidden");
+        }, 1000);
+    });
+    window.addEventListener("scroll",()=>{
+        if(window.scrollY == 0){
+            ho.classList.add("home-active");
+            ab.classList.remove("home-active");
+            co.classList.remove("home-active");
+            upLog.classList.add("hidden");
+        }
+        else{
+            upLog.classList.remove("hidden");
+        }
+    });
+    upLog.addEventListener("click",()=>{
+        window.scrollTo({
+            top: 0,
+            behavior:"smooth"
+        });
+    });
+
+    ho.addEventListener("click", function(){
+        ab.classList.remove("home-active");
+        co.classList.remove("home-active");
+        ho.classList.add("home-active");
+    });
+    ab.addEventListener("click", function(){
+        ho.classList.remove("home-active");
+        co.classList.remove("home-active");
+        ab.classList.add("home-active");
+    });
+    co.addEventListener("click", function(){
+        ho.classList.remove("home-active");
+        ab.classList.remove("home-active");
+        co.classList.add("home-active");
+    });
+    adIcon.addEventListener("click", function(){
+        adIcon.classList.add("hidden");
+        goAd.classList.add("hidden");
+        studs.classList.add("hidden");
+        stIcon.classList.remove("hidden");
+        goSt.classList.remove("hidden");
+        adCol.classList.add("clicked");
+        ho.classList.remove("home-active");
+        ab.classList.remove("home-active");
+        co.classList.remove("home-active");
+        admins.classList.remove("hidden");
+        setTimeout(() =>{
+            admins.classList.add("visible");
+        });
+    });
+    stIcon.addEventListener("click", function(){
+        stIcon.classList.add("hidden");
+        goSt.classList.add("hidden");
+        adIcon.classList.remove("hidden");
+        goAd.classList.remove("hidden");
+        adCol.classList.remove("clicked");
+        studs.classList.remove("hidden");
+        ho.classList.add("home-active");
+        admins.classList.add("hidden");
+        admins.classList.remove("visible");
+    });
+    function studBut(){
+        console.log("studclicked")
+        if (getCookie("formSubmitted") === "true") {
+            window.location.href = "resub.html";
+        }
+        else{
+            window.location.href = "form.html";
+        }    
+    };
+
+    function princBut(){
+        console.log("princClicked");
+        document.write("Principal login page not yet done plz be patient.");
+    };
+
+    function hodBut(){
+        console.log("hodClicked");
+        window.location.href = "login.html";
+    };
+
+    function lecBut(){
+        console.log("lecClicked");
+        document.write("Lectures login page not yet done plz be patient.");
+    };
+
+    function getCookie(name) {
+        const cname = name + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const ca = decodedCookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(cname) === 0) {
+                return c.substring(cname.length, c.length);
+            }
+        }
+        return "";
+    };
+</script>
 </html>
