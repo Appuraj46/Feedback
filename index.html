@@ -603,7 +603,7 @@
         }, 1000);
     });
     window.addEventListener("scroll",()=>{
-        if(window.scrollY == 0){
+        if(window.scrollY <= 10){
             ho.classList.add("home-active");
             ab.classList.remove("home-active");
             co.classList.remove("home-active");
