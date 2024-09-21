@@ -602,7 +602,10 @@
             load.classList.add("hidden");
         }, 1000);
     });
-    window.addEventListener("scroll",()=>{
+    
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("touchmove", handleScroll);
+    function handleScroll() {
         if(window.scrollY <= 10){
             ho.classList.add("home-active");
             ab.classList.remove("home-active");
@@ -612,7 +615,8 @@
         else{
             upLog.classList.remove("hidden");
         }
-    });
+    };
+    
     upLog.addEventListener("click",()=>{
         window.scrollTo({
             top: 0,
