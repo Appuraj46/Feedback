@@ -23,6 +23,14 @@
                 width: 100vw;
                 height: 100vh;
             }
+            #load{
+                background: rgb(255, 255, 255) url(hod-load.gif) no-repeat center;
+                /* background-size: 100px; */
+                width: 100%;
+                height: 100vh;
+                position: fixed;
+                z-index: 100;
+            }
             .hidden{
                 display: none;
             }
@@ -119,6 +127,7 @@
         </style>
     </head>
     <body>
+        <div id="load"></div>
         <div class="container">
             <div class="cont-col">
                 <form id="form">
@@ -152,6 +161,12 @@
         const password = document.getElementById("password");
         const userwrong = document.querySelectorAll(".wrong")[0];
         const passwrong = document.querySelectorAll(".wrong")[1];
+
+        window.addEventListener("load", ()=>{
+            setTimeout(() =>{
+                load.classList.add("hidden");
+            }, 2000);
+        });
 
         form.addEventListener("submit", (e) =>{
             e.preventDefault();
