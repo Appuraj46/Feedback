@@ -414,8 +414,11 @@
                 float: left;
             }
             .contact p{
+                position: relative;
                 font-size: 1.1em;
+                margin: 0 10px 0 0;
                 padding: 0 50px 10px 30px;
+                /* border: 1px red solid; */
             }
             .detail{
                 width: 100%;
@@ -602,10 +605,8 @@
             load.classList.add("hidden");
         }, 1000);
     });
-    
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("touchmove", handleScroll);
-    function handleScroll() {
+
+    window.addEventListener("scroll",()=>{
         if(window.scrollY <= 10){
             ho.classList.add("home-active");
             ab.classList.remove("home-active");
@@ -615,8 +616,8 @@
         else{
             upLog.classList.remove("hidden");
         }
-    };
-    
+    });
+
     upLog.addEventListener("click",()=>{
         window.scrollTo({
             top: 0,
