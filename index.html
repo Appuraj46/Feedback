@@ -151,13 +151,13 @@
         }
         .stud-cont{
             padding: 5px;
-            background: rgba(255, 255, 255, 0.548);
+            background: rgba(255, 255, 255, .3);
         }
         .stud-cont h2{
             text-align: center;
             font-size: 3.2em;
             padding: 15px 0px 20px 0px;
-            text-decoration: underline 2px;
+            /* text-decoration: underline 2px; */
         }
         .p1{
             text-align: center;
@@ -185,17 +185,27 @@
             text-align: center;
         }
         .stud-but {
-            background-color: #007BFF;
-            color: white;
-            padding: 11px 21px;
+            background: transparent;
+            border-color: #fce72f;
+            border-width: 3px;
+            color: rgb(0, 0, 0);
+            padding: 11px 20px;
             position: relative;
             left: 50%;
             transform: translate(-50%,50%);
             /* margin: 20px; */
-            border: none;
-            border-radius: 6px;
+            /* border: none; */
+            border-radius: 30px;
             font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
+        }
+        .intro ion-icon{
+            font-size: 20px;
+            float: right;
+        }
+        .stud-but:hover{
+            background: #fce72f;
         }
         .note{
             margin: 50px 0 0 0;
@@ -310,7 +320,6 @@
             position: fixed;
             right: 10px;
             bottom: 10px;
-            z-index: 10;
             cursor: pointer;
             font-size: 50px;
             color: #1b1b1b;
@@ -488,7 +497,7 @@
             <p class="p2">Your Feedback is essential to helping us improve both the academic and student experience. By sharing your insights, you're helping the institution identify areas for growth and development. Let your vice be heard and help shape the future of our educational environment.</p>
             <p class="p4">Take a few minutes to fill out our simple feedback form and contribute to enhancing our campus for everyone.</p>
             <p class="p5">"Click the button below to begin. The process is quick, and your feedback is anonymous."</p>
-            <button class="stud-but" id="stud-but" onclick="studBut()">Submit Feedback</button>
+            <button class="stud-but" id="stud-but" onclick="studBut()">Submit Feedback &nbsp;<ion-icon name="arrow-forward-outline"></ion-icon></button>
         </div>
         <div class="note">
             <h3><u>Note</u>:-</h3>
@@ -667,6 +676,7 @@
         ho.classList.add("home-active");
         admins.classList.add("hidden");
         admins.classList.remove("visible");
+        ab.classList.remove("hidden");
     });
     function studBut(){
         console.log("studclicked")
