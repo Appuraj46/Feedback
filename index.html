@@ -22,8 +22,8 @@
             background-attachment: fixed;
             background-size: cover;
             background-repeat: no-repeat;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
         }
         #load{
             background: rgb(255, 255, 255) url(load.gif) no-repeat center;
@@ -81,7 +81,7 @@
         }
         .headoption a:hover,
         .headoption .home-active{
-            background-color: rgba(238, 238, 17, 0.767);
+            background-color: rgba(238, 223, 17, 0.767);
             border-radius: 20px;
             transition: background .2s;
         }
@@ -109,9 +109,9 @@
             color: rgb(3, 15, 119);
         }
         .admin-cont{
-            transition: 1s ease-in-out;
+            transition: .8s ease-in-out;
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(15px);
             padding: 5px;
             background-size: cover;
             background: rgba(255, 255, 255, 0.548);
@@ -128,7 +128,7 @@
         .admin-cont h2{
             font-size: 3em;
             /* text-decoration: underline; */
-            text-shadow: 0px 0px 1.2px rgb(202, 206, 4);
+            text-shadow: 0px 0px 1.5px rgb(34, 4, 206);
         }
         .admin-cont button{
             position: relative;
@@ -153,6 +153,13 @@
         .stud-cont{
             padding: 5px;
             background: rgba(255, 255, 255, .3);
+            transition: .8s ease-in-out;
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        .studvisib{
+            opacity: 1;
+            transform: translateY(0);
         }
         .stud-cont h2{
             text-align: center;
@@ -186,16 +193,16 @@
             text-align: center;
         }
         .stud-but {
-            background: transparent;
-            border-color: #fce72f;
-            border-width: 3px;
+            background: rgb(198, 211, 255);
+            /* border: 2.5px #fce72f solid; */
+            box-shadow: 0 0 5px rgb(89, 0, 255);
             color: rgb(0, 0, 0);
             padding: 11px 20px;
             position: relative;
             left: 50%;
             transform: translate(-50%,50%);
             /* margin: 20px; */
-            /* border: none; */
+            border: 1.5px rgb(0, 0, 0) solid;
             border-radius: 30px;
             font-size: 16px;
             font-weight: 600;
@@ -206,7 +213,8 @@
             float: right;
         }
         .stud-but:hover{
-            background: #fce72f;
+            background: #ebe291;
+            box-shadow: 0 0 5px yellow;
         }
         .note{
             margin: 50px 0 0 0;
@@ -229,23 +237,30 @@
             text-align: left;
         }
         .table{
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+            width: 98%;
+        }
+        .tablebox{
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
         }
-        .table thead{
+        .tablebox thead{
             background-color: #f2f2f2;
         }
-        .table th, .table td{
+        .tablebox th, .tablebox td{
             border: 1px solid #a5a4a4;
             padding: 12px;
         }
-        .table th{
+        .tablebox th{
             background-color: #8a8c8d;
             color: rgb(0, 0, 0);
         }
-        .table td{
+        .tablebox td{
             background-color: #ffffff;
+            /* text-align: left; */
         }
         footer{
             background-color: rgba(236, 236, 235, 0.959);
@@ -382,9 +397,13 @@
                 font-size: 1.3em;
             }
             .stud-but {
-                padding: 11px 21px;
-                border-radius: 6px;
+                padding: 11px 10px;
+                border-radius: 30px;
+                font-size: 12px;
+            }
+            .intro ion-icon{
                 font-size: 15px;
+                float: right;
             }
             .note h3{
                 font-size: 1.5em;
@@ -514,44 +533,46 @@
             <hr>
             <h3>About</h3>
             <p class="p3">At Shree Devi Institute Of Technology, we believe that high-quality teaching is the foundation of student success. Your feedback about your lecturers is essential in helping us maintain and enhance the learning experience. By sharing your insights on teaching methods, course content delivery, and classroom engagement, you contribute to ensuring that our faculty is aligned with your learning needs. This feedback helps us recognize outstanding teaching while identifying areas where improvements can be made. Your perspective is vital in shaping the educational environment, and by providing your feedback, you play a key role in supporting the development of our lecturers. Rest assured, all feedback is anonymous, and your honest thoughts will contribute directly to enhancing the quality of education for both current and future students.</p>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Less Helpful Comments</th>
-                        <th>Helpful Comments</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td data-label="Less Helpful Comments">This professor was awesome.</td>
-                        <td data-label="Helpful Comments">This professor gave us lots of activities to do in the classroom which helped me really understand what I was doing rather than remembering stuff for a quiz.</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Less Helpful Comments">This professor sucks.</td>
-                        <td data-label="Helpful Comments">I had a problem understanding all the jargon in many of the lectures. It would have helped me  if you talked in plainer English.</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Less Helpful Comments">This professor doesn't like students.</td>
-                        <td data-label="Helpful Comments">I wish you had talked to the class like you were teaching people and not just the content of his subject. I would have liked you to check for understanding at certain points in the lecture.</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Less Helpful Comments">The professor just talked at us in the lecture.</td>
-                        <td data-label="Helpful Comments">I would have preferred if we could have done some group work to discuss some of the ideas with our peers</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Less Helpful Comments">This professor was motivating.</td>
-                        <td data-label="Helpful Comments">This professor told us stories about how he collected data for his research and made me enthusiastic to want to do the same.</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Less Helpful Comments">The professor never went over the homework.</td>
-                        <td data-label="Helpful Comments">It would have been helpful if the professor incorporated a few of the homework problems into the lecture so we could have seen how to go about solving them and could ask questions if we still didn't understand.</td>
-                    </tr>
-                    <tr>
-                        <td data-label="Less Helpful Comments">The professor was caring.</td>
-                        <td data-label="Helpful Comments">I really appreciated the way the professor was always there after class to answer questions and always responded to my e-mails.</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table">
+                <table class="tablebox">
+                    <thead>
+                        <tr>
+                            <th>Less Helpful Comments</th>
+                            <th>Helpful Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Less Helpful Comments">This professor was awesome.</td>
+                            <td data-label="Helpful Comments">This professor gave us lots of activities to do in the classroom which helped me really understand what I was doing rather than remembering stuff for a quiz.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Less Helpful Comments">This professor sucks.</td>
+                            <td data-label="Helpful Comments">I had a problem understanding all the jargon in many of the lectures. It would have helped me  if you talked in plainer English.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Less Helpful Comments">This professor doesn't like students.</td>
+                            <td data-label="Helpful Comments">I wish you had talked to the class like you were teaching people and not just the content of his subject. I would have liked you to check for understanding at certain points in the lecture.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Less Helpful Comments">The professor just talked at us in the lecture.</td>
+                            <td data-label="Helpful Comments">I would have preferred if we could have done some group work to discuss some of the ideas with our peers</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Less Helpful Comments">This professor was motivating.</td>
+                            <td data-label="Helpful Comments">This professor told us stories about how he collected data for his research and made me enthusiastic to want to do the same.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Less Helpful Comments">The professor never went over the homework.</td>
+                            <td data-label="Helpful Comments">It would have been helpful if the professor incorporated a few of the homework problems into the lecture so we could have seen how to go about solving them and could ask questions if we still didn't understand.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Less Helpful Comments">The professor was caring.</td>
+                            <td data-label="Helpful Comments">I really appreciated the way the professor was always there after class to answer questions and always responded to my e-mails.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <footer id="footer">
@@ -564,7 +585,7 @@
                 <h5>College</h5>
                 <div class="inner">
                     <div class="detail">
-                        <ion-icon name="mail-outline"></ion-icon><a href="mailto:sditpricipal@gmail.com" title="mail"><p> sditpricipal@gmail.com</p></a><br>
+                        <ion-icon name="mail-outline"></ion-icon><a href="mailto:sditpricipal@gmail.com" title="mail"><p> sditprincipal@gmail.com</p></a><br>
                         <ion-icon name="call-outline"></ion-icon><p> +91 (824) 2254102, 2254104</p><br>
                         <ion-icon name="location-outline"></ion-icon><p class="loc">Shree Devi Institute Of Technology,<br> Kenjar, Airport Road, Mangalore <br>574 142, Karnataka</p>
                     </div>
@@ -574,7 +595,7 @@
                 <h5>Trust-Office</h5>
                 <div class="inner">
                     <div class="detail">
-                        <ion-icon name="mail-outline"></ion-icon><a href="mailto:sditpricipal@gmail.com" title="mail"><p> sditpricipal@gmail.com</p></a><br>
+                        <ion-icon name="mail-outline"></ion-icon><a href="mailto:sditpricipal@gmail.com" title="mail"><p> sditprincipal@gmail.com</p></a><br>
                         <ion-icon name="call-outline"></ion-icon><p> +91 (824) 2457937, 2456511, 2456501</p><br>
                         <ion-icon name="location-outline"></ion-icon><p class="loc">Shree Devi Education Trust,<br> Ballalbagh, Mangalore <br>575 003, Karnataka</p>
                     </div>
@@ -615,6 +636,7 @@
         setTimeout(() => {
             load.classList.add("hidden");
         }, 1000);
+        studs.classList.add("studvisib");
     });
 
     window.addEventListener("scroll",()=>{
@@ -663,6 +685,7 @@
         co.classList.remove("home-active");
         admins.classList.remove("hidden");
         ab.classList.add("hidden");
+        studs.classList.remove("studvisib");
         setTimeout(() =>{
             admins.classList.add("visible");
         });
@@ -678,6 +701,9 @@
         admins.classList.add("hidden");
         admins.classList.remove("visible");
         ab.classList.remove("hidden");
+        setTimeout(() =>{
+            studs.classList.add("studvisib");
+        });
     });
     function studBut(){
         console.log("studclicked")
