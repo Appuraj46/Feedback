@@ -92,10 +92,11 @@
             flex-direction: column;
             align-items: center;
             color: rgb(119, 3, 3);
-            cursor: pointer;
+            cursor: default;
         }
         .goad ion-icon{
             font-size: 3.5em;
+            cursor: pointer;
         }
         .goad ion-icon:hover{
             background-color: gray;
@@ -727,7 +728,7 @@
 
     function lecBut(){
         console.log("lecClicked");
-        document.write("Lectures login page not yet done plz be patient.");
+        window.location.href = "leclogin.html";
     };
 
     function getCookie(name) {
